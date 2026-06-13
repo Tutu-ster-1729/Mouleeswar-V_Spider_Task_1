@@ -20,13 +20,13 @@ Encrypting reads through a string and gets their ordinal (ASCII) value which is 
     
 Decrypting employes the above logic but shifting the characters backwards.
     
-To find the Top 3 Ciphers, each shift was given a score based on how common they occur in readable english, how many common english words occur and how many bigrams are present from the functions frequency_score(), common_word_score() and ngram_score() respectively. 
+To find the Top 3 Ciphers, each shift was given a score based on how common they occur in readable english, how many common english words occur and how many bigrams are present from the functions `frequency_score()`, `common_word_score()` and `ngram_score()` respectively. 
     
-common_word_score() compares each word in the decrypted text with a defined list of common words and assigns a score based on them 
+`common_word_score()` compares each word in the decrypted text with a defined list of common words and assigns a score based on them 
     
-frequency_score() has a pre defined probability of each letters occuring in sentences. It utilises the Counter method from the collections module to make a list of occurrences and then their frequency is subtracted from them. This error is subtracted from the score (absolute). So the lesser score a string gets the closer it is to readable English
+`frequency_score()` has a pre defined probability of each letters occuring in sentences. It utilises the Counter method from the collections module to make a list of occurrences and then their frequency is subtracted from them. This error is subtracted from the score (absolute). So the lesser score a string gets the closer it is to readable English
     
-ngram_score() implements the same logic as common_word_score() but with pre defined bigrams. It can also be extended with any length (trigrams, etc)
+`ngram_score()` implements the same logic as common_word_score() but with pre defined bigrams. It can also be extended with any length (trigrams, etc)
     
 Total score weightage is purely experimental and can be changed
     
@@ -38,11 +38,11 @@ Argument parsing is done to read command line arguements using argparse library
 
 Ciphertext:Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj.Fubswrjudskb lv wkh duw rizulwlqj dqg vroylqj frghv
 Top Ranked Output:Top 3:
-
+```
 Shift 3 : Score = 41.353493670886074 : The quick brown fox jumps over the lazy dog. Cryptography is the art ofwriting and solving codes
 Shift 16 : Score = -6.949797468354431 : Gur dhvpx oebja sbk whzcf bire gur ynml qbt. Pelcgbtencul vf gur neg bsjevgvat naq fbyivat pbqrf
 Shift 14 : Score = -7.7634683544303815 : Iwt fjxrz qgdlc udm yjbeh dktg iwt apon sdv. Rgneidvgpewn xh iwt pgi dulgxixcv pcs hdakxcv rdsth
-
+```
 ## LIMITATIONS:
 
 1. Limited Number of Keys (26) --> Easy to break / Bruteforce
@@ -67,7 +67,7 @@ Secure Hash Algorithm - 256 bit - A cryptographic hash functions that generates 
     
 standard library module hashlib function has been used for implementing this function.
 
-Optional parser flag --verify has been added
+Optional parser flag `--verify` has been added
 
 A hash function has been defined with help of haslib module, which first converts the text input to bytes with the .encode() methode, then a hash is generated in the form of bytes which is then converted to hex characters using .hexdigest() method
 
@@ -103,19 +103,20 @@ To replace Caesar cipher with a more modern encryption scheme AES-256-CBC while 
 * IV : Initialization Vector : CBC requires a random IV
 
 ## IMPLEMENTATION:
-ENCRYPTION:                         |        DECRYPTION:
-Plaintext file ->                   |        Read SALT ->
-Compute SHA256 hash ->              |        Derive AES key from password ->
-Generate random salt ->             |        Read IV ->
-Derive AES key using PBKDF2 ->      |        AES decrypt ciphertext ->
-Generate random IV ->               |        Remove padding ->
-Pad plaintext ->                    |        Recover plaintext ->
-AES-256-CBC encryption->            |        Verify SHA256 integrity hash ->
-Store:                              |        Restore file
-    SALT                            |
-    IV                              |
-    HASH                            |
-    DATA                            |
+| ENCRYPTION:                         |        DECRYPTION:                       |
+--------------------------------------|-------------------------------------------
+| Plaintext file ->                   |        Read SALT ->                      |
+| Compute SHA256 hash ->              |        Derive AES key from password ->   |
+| Generate random salt ->             |        Read IV ->                        |
+| Derive AES key using PBKDF2 ->      |        AES decrypt ciphertext ->         |
+| Generate random IV ->               |        Remove padding ->                 |
+| Pad plaintext ->                    |        Recover plaintext ->              |
+| AES-256-CBC encryption->            |        Verify SHA256 integrity hash ->   |
+| Store:                              |        Restore file                      |
+|    * SALT                           |                                          |
+|    * IV                             |                                          |
+|    * HASH                           |                                          |
+|    * DATA                           |                                          |
 
 Only the correct password can be able to decrypt the file, an incorrect password would trigger a Padding/decrytion error
 Same Integrity check from stage 2 has been implemented 
@@ -140,21 +141,22 @@ While password based AES encryption is secure, a sender will have to share the p
 
 RSA uses Asymmetric encryption which can effectively encrypt small data such as other keys but is not suitable for large data. Hence AES is used to encrypt large data using symmetric encryption and AES key is encrypted using RSA. Hence use of RSA directly is not feasible for files, it can be rather implemented on keys
 
-A separate function for key generation has been implemented that stores private and public keys in a .pem file for each. They are generated by computing using functions in rsa's module (cryptography.hazmat.primitives.asymmetric)
+A separate function for key generation has been implemented that stores private and public keys in a .pem file for each. They are generated by computing using functions in rsa's module (`cryptography.hazmat.primitives.asymmetric`)
 
 AES uses a different PKCS7 padding while RSA uses OAEP padding. Their methods might be different but they are used to serve the same purpose, ie to fill out redundant bytes until block size of the algorithm used is filled (AES - 16 bytes - 128 bits)
 
-ENCRYPTION:                                     DECRYPTION:
-Generate random AES-256 key ->                  Read RSAKEY ->
-Generate random IV ->                           Load private.pem ->
-Encrypt file using AES-CBC ->                   Decrypt RSAKEY ->
-Load recipient public key ->                    Recover AES session key ->
-Encrypt AES key using RSA-OAEP ->               AES decrypt ciphertext ->
-Store:                                          Remove padding ->
-    RSAKEY                                      Recover plaintext ->
-    IV                                          Verify SHA256 hash
-    HASH
-    DATA
+| ENCRYPTION:                            |         DECRYPTION:                        |
+|----------------------------------------|--------------------------------------------|
+| Generate random AES-256 key ->         |         Read RSAKEY ->                     |
+| Generate random IV ->                  |         Load private.pem ->                |
+| Encrypt file using AES-CBC ->          |         Decrypt RSAKEY ->                  |
+| Load recipient public key ->           |         Recover AES session key ->         |
+| Encrypt AES key using RSA-OAEP ->      |         AES decrypt ciphertext ->          |
+| Store:                                 |         Remove padding ->                  |
+|    * RSAKEY                            |         Recover plaintext ->               |
+|    * IV                                |         Verify SHA256 hash                 |
+|    * HASH                              |                                            |
+|    * DATA                              |                                            |
 
 The structure used here is somewhat similar to modern HTTP/TLS (Transport layer security) protocol which encrypts HTTPS communication over the internet. During the TLS handshake or initiation, client obtains the server's public key and generates a temporary symmetric session key which is encrypted using the RSA public key and transmitted back to the server. This is decrypted by the server using its private key, after which both client and server switch to AES. This handshake encryption is exactly implemented in this stage.
 
