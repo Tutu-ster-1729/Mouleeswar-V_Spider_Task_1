@@ -108,6 +108,9 @@ Two distinct crashes were observed.
 
 The crashes were reproduced manually outside AFL++ by executing the generated crash files against the parser.
 
+<img width="1276" height="990" alt="Screenshot 2026-06-10 022554" src="https://github.com/user-attachments/assets/e69e9bbb-fc78-46a6-b9b9-c1d8e463fdd5" />
+
+
 ---
 
 ## Crash Analysis
