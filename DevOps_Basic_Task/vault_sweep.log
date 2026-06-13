@@ -1,0 +1,28 @@
+[2026-06-07 16:04:14] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:05:58] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:06:28] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:06:50] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:14:12] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:14:35] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:14:35] [WARN] /home/tutu/test/another_test/bad.sh has world writable permissions
+[2026-06-07 16:19:00] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:19:00] [WARN] /home/tutu/test/another_test/bad.sh - has world writable permissions
+[2026-06-07 16:23:32] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:23:32] [WARN] /home/tutu/test/another_test/bad.sh - has world writable permissions
+[2026-06-07 16:28:55] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:28:55] [WARN] /home/tutu/test/another_test/bad.sh - has world writable permissions
+[2026-06-07 16:29:02] [FIX] /home/tutu/test/another_test/bad.sh - removed world write permissions
+[2026-06-07 16:43:08] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:49:51] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:49:51] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:49:52] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:49:52] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:51:38] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:51:38] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:51:38] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:51:38] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:54:13] [WARN] /home/tutu/test/another_test/bad.sh - Dangerous command found
+[2026-06-07 16:54:13] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:54:13] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:54:13] [WARN] /home/tutu/test/.env - removed sensitive variable
+[2026-06-07 16:54:13] [INFO] Created /home/tutu/test/.env.sanitized
