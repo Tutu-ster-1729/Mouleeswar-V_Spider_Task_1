@@ -162,6 +162,17 @@ With these changes, AFL++ successfully generated crash-inducing inputs.
 
 The discovered crashes demonstrated that the vulnerability could be reached through automated fuzzing rather than solely through manually crafted test cases.
 
+--- 
+
+## Screenshots from Fuzzer 
+
+<img width="1265" height="856" alt="Screenshot 2026-06-11 032047" src="https://github.com/user-attachments/assets/47ea1082-5464-42d8-8cf0-db23d4a8e7df" />
+
+<img width="1273" height="846" alt="Screenshot 2026-06-11 162552" src="https://github.com/user-attachments/assets/46617e6d-0440-4b23-a80c-fef191fa7ff5" />
+
+<img width="1262" height="845" alt="Screenshot 2026-06-11 163547" src="https://github.com/user-attachments/assets/f0a0562a-bcfa-4c9a-9c44-4163d6983ed9" />
+
+
 ---
 
 ## Lessons Learned
